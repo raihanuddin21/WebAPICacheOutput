@@ -9,12 +9,15 @@ using WebAPICacheOutput.Models;
 
 namespace WebAPICacheOutput.Controllers
 {
+    [RoutePrefix("api/User")]
     public class UserController : ApiController
     {
         //https://github.com/filipw/Strathweb.CacheOutput
 
         [CacheOutput(ClientTimeSpan = 100, ServerTimeSpan = 100)]
-        public IHttpActionResult Get(int id)
+        [HttpGet]
+        [Route("GetUser/{id}/{age}")]
+        public IHttpActionResult GetUser(int id, int age)
         {
             List<UserModel> users = new List<UserModel>();
             for (int i = 0; i < 100; i++)
